@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "80ASNeIsn7Pr9rLoa1VbwIQ6n5dn/L7rZ+8GUarFp7FnVPUCA8KqJk4iLn3PDajAHXGl7NMb7mwAIpd0OezfeA==",
+  "success": true,
+  "projectFilePath": "/home/hu/Documents/FM5353/HW/HW3/HW3.csproj",
+  "expectedPackageFiles": [
+    "/home/hu/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.8/microsoft.aspnetcore.app.ref.6.0.8.nupkg.sha512"
+  ],
+  "logs": []
+}
