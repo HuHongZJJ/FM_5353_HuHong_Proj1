@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content = "width=device-width, 
+        initial-scale=1.0">
+        <meta http-equiv = "X-UA-Compatible" content = "ie=edge">
+        <link rel = "stylesheet" type = "text/css" href="index.css">
+        <title>Option Pricing Tool</title>
+    </head>
+    <body>
+       <div class = "container" >
+            <div class = "box1">
+                <h2>Option Pricing Tool</h2>
+            </div>
+            <form id = "theForm"  method = "post" action = "http://localhost:5037/OptionPricing" >        
+                <label for ="OptionType">Option Type:</label>
+                <select id="OptionType" name="OptionType">
+                    <option value = "european">European</option>
+                    <option value = "asian">Asian</option>
+                    <option value = "digital">Digital</option>
+                    <option value = "barrier">Barrier</option>
+                    <option value = "lookback">Lookback</option>
+                    <option value = "range">Range</option>
+                </select>
+                <br>
+                <label for = "S0">Initial Underlying Price:</label>
+                <input type="number" id = "S0" name = "S0" required min = 0 step = ".001" value="100">
+                <br>
+                <label for = "r">Risk Free Interest Rate:</label>
+                <input type="number" id = "r" name = "r" required min =0 max = 1 step = ".01" value = "0.05">
+                <br>
+                <label for = "Steps">Steps of Monte Carlo:</label>
+                <input type="number" id = "Steps" name = "Steps" required min = 1 value = "1000">
+                <br>
+                <label for = "Simulations">Simulations of Monte Carlo:</label>
+                <input type="number" id = "Simulations" name = "Simulations" required min = 1 value ="1000">
+                <br>
+                <label for = "Volatility">Volatility:</label>
+                <input type="number" id = "Volatility" name = "Volatility" required min = 0 max = 1 step = ".01" value = "0.2">
+                <br>
+                <label for = "IsThread">Multithreading:</label>
+                <select id = "IsThread" name ="IsThread">
+                    <option value = false>No</option>
+                    <option value = true>Yes</option>
+                </select>
+                <br>
+                <label for = "IsAntithetic">Antithetic:</label>
+                <select id = "IsAntithetic" name ="IsAntithetic">
+                    <option value = false>No</option>
+                    <option value = true>Yes</option>
+                </select>
+                <br>
+                <label for = "IsDeltaCV">Delta Control Variate:</label>
+                <select id = "IsDeltaCV" name ="IsDeltaCV">
+                    <option value = false>No</option>
+                    <option value = true>Yes</option>
+                </select>
+                <br>
+                <label for = "Tenor">Tenor</label>
+                <input type="number" id = "Tenor" name = "Tenor" required min = 0 value = "1">
+                <br>
+                <label for = "Strike">Strike</label>
+                <input type="number" id = "Strike" name = "Strike" required min = 0 step = '.01' value ="100">
+                <br>
+                <label for = "IsCall">Call or Put option:</label>
+                <select id = "IsCall" name ="IsCall">
+                    <option value = true>Call Option</option>
+                    <option value = false>Put Option</option>
+                </select>
+                <br>
+                <label for = "PayOut">PayOut</label>
+                <input type="number" id = "PayOut" name = "PayOut" required min = 0 step = '.01' value = "0">
+                <br>
+                <label for ="KnockType">Knock Out Type:</label>
+                <select id="KnockType" name="KnockType">
+                    <option value = "up and in">Up and In</option>
+                    <option value = "up and out">Up and Out</option>
+                    <option value = "down and in">Down and In</option>
+                    <option value = "down and out">Down and Out</option>
+                </select>
+                <br>
+                <label for = "BarrierLevel">Barrier Level</label>
+                <input type="number" id = "BarrierLevel" name = "BarrierLevel" required min = 0 value = "0">
+                <input type="submit" vaSue="Get Result!">
+            </form>
+            <br>
+            <br>
+            <br>
+            <form name = "result" >
+            <label for = "price">Price</label>
+            <p type="number" id = "price" name = "price" required></p>
+            <br>
+            <label for = "delta">Delta</label>
+            <p type="number" id = "delta" name = "delta" required maxlength = '4'></p>
+            <br>
+            <label for = "theta">Theta</label>
+            <p type="number" id = "theta" name = "theta" required maxlength = '4'></p>
+            <br>                
+            <label for = "gamma">Gamma</label>
+            <p type="number" id = "gamma" name = "gamma" required maxlength = '4'></p>
+            <br>
+            <label for = "vega">Vega</label>
+            <p type="number" id = "vega" name = "vega" required maxlength = '4'></p>
+            <br>
+            <label for = "rho">Rho</label>
+            <p type="number" id = "rho" name = "rho" required maxlength = '4'></p>
+            <br>                
+            <label for = "stdErrorNorm">Regular Standard Error</label>
+            <p type="number" id = "stdErrorNorm" name = "stdErrorNorm" required maxlength = '4'></p>
+            <br>
+            <label for = "stdErrorReduce">Reduced Standard Error</label>
+            <p type="number" id = "stdErrorReduce" name = "stdErrorReduce" required maxlength = '4'></p>
+            <br>
+                
+
+            </form>
+                     
+            
+
+       </div>
+        <script src="index.js"></script>
+    </body>
+</html>
