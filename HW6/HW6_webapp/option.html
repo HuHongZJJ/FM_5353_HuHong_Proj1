@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content = "width=device-width, 
+        initial-scale=1.0">
+        <meta http-equiv = "X-UA-Compatible" content = "ie=edge">
+        <title>Portfolio Management Page</title>
+        <style>
+            html
+            {
+                background-color: black;
+                width: 100%;
+                height:100%;
+                color: white;
+
+            }
+            
+            .frametable
+            {
+                position: relative;
+                align-items: center;
+                background-color: black;
+                color: white;
+                width: 100%;
+                height:100%;
+                grid-column: 2;
+                padding: 5px;
+                font-size: medium;
+                border-collapse: collapse;
+
+            }
+            .frameButtons
+            {
+                background-color:orange;
+                font-family:Tahoma;
+                font-size:18px;
+                align-content:center;
+                align-items:center;
+                border-color:orange;
+                border-style:ridge;
+                position: relative;
+                height: 50%;
+                width: 99%;
+                border: 2px solid;
+                top:auto;
+                left: auto;
+                padding:0.5cm;
+                border-radius: 5px;
+            }
+            .frameButtons:hover,
+            .frameButtons:focus,
+            .frameButtons:active{
+                transition: background-color 300ms linear;
+                background-color: gray;
+            }
+            .frameCol3
+            {
+                position:relative;
+                align-items: start;
+                left:auto;
+                top:0cm;
+                width: 100%;
+                height:99%;
+                grid-row: 1;
+                grid-template-rows: 95%;
+
+            }
+
+            td{
+                width: 10%;
+            }
+            
+          
+        </style>
+    </head>
+    <body>
+        <table id="frametable">
+            <tbody>
+                <tr>
+                    <td class="frameCol1">
+                        <p>
+                            <button id="optionRefresh" class = "frameButtons">Refresh Option</button>
+                        </p>
+                    </td>
+                    <td class="frameCol2">
+
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td class="frameCol3">
+                        <table id="optionList">
+                            <thead>
+                                <tr>
+                                    <td class="listCol1"> 
+                                        <p>Id</p>
+                                    </td>
+                                    <td class="listCol2">
+                                        <p>Underlying Id</p>
+                                        
+                                    </td>
+                                    <td class="listCol3">
+                                        <p>Option Type</p>
+                                    </td>
+                                    <td class="listCol4">
+                                        <p>Expiration Date</p>
+                                    </td>
+                                    <td class="listCol5">
+                                        <p>Strike</p>
+                                    </td>
+                                    <td class="listCol6">
+                                        <p>Vol</p>
+                                    </td>
+                                    <td class="listCol7">
+                                        <p>IsCall</p>
+
+                                    </td>
+                                    <td class="listCol8">
+
+                                        <p>Knock Type</p>
+                                    </td>
+                                    <td class="listCol9">
+                                        <p>PayOut</p>
+                                    </td>
+                                    <td class="listCol10">
+                                
+                                        <p>Barrier Level</p>
+
+                                    </td>
+
+                                </tr>
+                            </thead>
+                            <tbody id="optionListBody">
+                            </tbody>
+                        </table>
+                        <p id="info"></p>
+                    </td>
+  
+                    <td class="frameCol4">
+                        <p>
+                            Underlying ID:
+                            <input id="UnderlyingId" />
+                        </p>
+                        <p>
+                            <label for ="OptionType">Option Type:</label>
+                            <select id="OptionType" name="OptionType">
+                                <option value = "european">European</option>
+                                <option value = "asian">Asian</option>
+                                <option value = "digital">Digital</option>
+                                <option value = "barrier">Barrier</option>
+                                <option value = "lookback">Lookback</option>
+                                <option value = "range">Range</option>
+                            </select>
+                        </p> 
+                        <p>
+                            <label for = "ExpirationDate">Expiration Date:</label>
+                            <input type="date" id="ExpirationDate"  />
+                            <script language="JavaScript"> 
+          
+                                Date.prototype.toDateInputValue = (function() {
+                                    var local = new Date(this); 
+                                    local.setMinutes(this.getMinutes() - this.getTimezoneOffset()); 
+                                    return local.toJSON().slice(0,10); });
+                                document.getElementById("ExpirationDate").value=new Date().toDateInputValue();                  
+                            </script> 
+                        </p>
+
+                        <p>
+                            <label for = "Strike">Strike:</label>
+                            <input type="number" id = "Strike" name = "Strike" required min = 0 step = '.01' value ="100">
+                        </p>
+                        <p>
+                            <label for ="Volatility">Volatility:</label>
+                            <input type="number" id = "Volatility" name = "Volatility" required min = 0 max = 1 step = ".01" value = "0.2">
+                        </p>
+                        <p>
+                            <label for = "IsCall">Call or Put option:</label>
+                            <select id = "IsCall" name ="IsCall">
+                                <option value = true>Call Option</option>
+                                <option value = false>Put Option</option>
+                            </select>
+                        </p>
+                        <p>
+                            <label for ="KnockType">Knock Out Type:</label>
+                            <select id="KnockType" name="KnockType">
+                                <option value = "up and in">Up and In</option>
+                                <option value = "up and out">Up and Out</option>
+                                <option value = "down and in">Down and In</option>
+                                <option value = "down and out">Down and Out</option>
+                            </select>
+                        </p>
+
+                        <p>
+                            <label for = "PayOut">PayOut:</label>
+                            <input type="number" id = "PayOut" name = "PayOut" required min = 0 step = '.01' value = "0">
+                        </p>
+                        <p>
+                            <label for = "BarrierLevel">Barrier Level:</label>
+                            <input type="number" id = "BarrierLevel" name = "BarrierLevel" required min = 0 value = "0">
+                        </p>
+
+                        <p>
+                            <button id="OptionAdd" class="frameButtons">Add</button>
+                        </p>
+
+
+                        <p id="debug"></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </body>
+
+
+</html>

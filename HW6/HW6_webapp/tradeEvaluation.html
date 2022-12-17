@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content = "width=device-width, 
+        initial-scale=1.0">
+        <meta http-equiv = "X-UA-Compatible" content = "ie=edge">
+        <title>Portfolio Management Page</title>
+        <style>
+            html
+            {
+                background-color: black;
+                width: 100%;
+                height:100%;
+                color: white;
+            }
+            
+            .frametable
+            {
+                position: relative;
+                align-items: center;
+                background-color: black;
+                color: white;
+                width: 100%;
+                height:100%;
+                grid-column: 2;
+                padding: 5px;
+                font-size: medium;
+                border-collapse: collapse;
+
+            }
+            .frameButtons
+            {
+                background-color:orange;
+                font-family:Tahoma;
+                font-size:18px;
+                align-content:center;
+                align-items:center;
+                border-color:orange;
+                border-style:ridge;
+                position: relative;
+                height: 50%;
+                width: 99%;
+                border: 2px solid;
+                top:auto;
+                left: auto;
+                padding:0.5cm;
+                border-radius: 5px;
+            }
+            .frameButtons:hover,
+            .frameButtons:focus,
+            .frameButtons:active{
+                transition: background-color 300ms linear;
+                background-color: gray;
+            }
+            .frameCol3
+            {
+                position:relative;
+                align-items: start;
+                left:auto;
+                top:0cm;
+                width: 100%;
+                height:99%;
+                grid-row: 1;
+                grid-template-rows: 95%;
+
+            }
+
+            td{
+                width: 10%;
+            }
+            
+          
+        </style>
+    </head>
+    <body>
+        <table id="frametable">
+            <tbody>
+                <tr>
+                    <td class="frameCol1">
+                        <p>
+                            <button id="evaluationRefresh" class = "frameButtons">Refresh Evaluation</button>
+                        </p>
+                    </td>
+                    <td class="frameCol2">
+
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td class="frameCol3">
+                        <table id="evaluationList">
+                            <thead>
+                                <tr>
+                                    <td class="listCol1"> 
+                                        <p>Id</p>
+                                    </td>
+                                    <td class="listCol2">
+                                        <p>Trade Id</p>
+                                        
+                                    </td>
+                                    <td class="listCol3">
+                                        <p>Fair Price</p>
+                                    </td>
+                                    
+                                    <td class="listCol4">
+                                        <p>PnL</p>
+                                    </td>
+                                    <td class="listCol5">
+                                        <p>Delta</p>
+                                    </td>
+                                    <td class="listCol6">
+                                        <p>Gamma</p>
+                                    </td>
+                                    <td class="listCol7">
+                                        <p>Vega</p>
+                                    </td>
+                                    <td class="listCol8">
+                                        <p>Rho</p>
+                                    </td>
+                                    <td class="listCol9">
+                                        <p>Theta</p>
+                                    </td>
+                                    <td class="listCol10">
+                                        <p>Evaluation Date</p>
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody id="evaluationListBody">
+                            </tbody>
+                        </table>
+                        <p id="info"></p>
+                    </td>
+  
+                    <td class="frameCol4">
+                        <p>
+                            Trade ID:
+                            <input id="TradeId" type="number"/>
+                        </p>
+                        <p>
+                            Rate Point ID:
+                            <input id="RatePointId" type="number">
+                        </p>
+                        <p>
+                            Underlying Fair Price
+                            <input id="underlyingFairPrice" type="number" />
+                        </p>
+
+                        <p>
+                            <label for = "EvaluationDate">Evalution Date:</label>
+                            <input type="date" id="EvaluationDate"  />
+                            <script language="JavaScript"> 
+          
+                                Date.prototype.toDateInputValue = (function() {
+                                    var local = new Date(this); 
+                                    local.setMinutes(this.getMinutes() - this.getTimezoneOffset()); 
+                                    return local.toJSON().slice(0,10); });
+                                document.getElementById("EvaluationDate").value=new Date().toDateInputValue();                  
+                            </script> 
+                        </p>
+                        <p>
+                            Below are for option evaluation
+                        </p>
+                        <p>
+                            <label for = "Steps">Steps of Monte Carlo:</label>
+                            <input type="number" id = "Steps" name = "Steps" required min = 1 value = "1000">
+                        </p>
+                        <p>
+                            <label for = "Simulations">Simulations of Monte Carlo:</label>
+                            <input type="number" id = "Simulations" name = "Simulations" required min = 1 value ="1000">
+                        </p>
+                        <p>
+                            <label for = "IsThread">Multithreading:</label>
+                            <select id = "IsThread" name ="IsThread">
+                                <option value = false>No</option>
+                                <option value = true>Yes</option>
+                            </select>
+                        </p>
+                        <p>
+                            <label for = "IsAntithetic">Antithetic:</label>
+                            <select id = "IsAntithetic" name ="IsAntithetic">
+                                <option value = false>No</option>
+                                <option value = true>Yes</option>
+                            </select>
+                        </p>
+                        <p>
+                            <label for = "IsDeltaCV">Delta Control Variate:</label>
+                            <select id = "IsDeltaCV" name ="IsDeltaCV">
+                                <option value = false>No</option>
+                                <option value = true>Yes</option>
+                            </select>    
+                        </p>
+                        <p>
+                            <button id="evaluate" class="frameButtons">Evaluate</button>
+                        </p>
+                        <p id="debug"></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </body>
+
+
+</html>
