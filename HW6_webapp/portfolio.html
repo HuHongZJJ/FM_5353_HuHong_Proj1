@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content = "width=device-width, 
+        initial-scale=1.0">
+        <meta http-equiv = "X-UA-Compatible" content = "ie=edge">
+        <title>Portfolio Management Page</title>
+        <style>
+            html
+            {
+                background-color: black;
+                width: 100%;
+                height:100%;
+                color: white;
+            }
+            
+            .frametable
+            {
+                position: relative;
+                align-items: center;
+                background-color: black;
+                color: white;
+                width: 100%;
+                height:100%;
+                grid-column: 2;
+                padding: 5px;
+                font-size: medium;
+                border-collapse: collapse;
+
+            }
+            .frameButtons
+            {
+                background-color:orange;
+                font-family:Tahoma;
+                font-size:18px;
+                align-content:center;
+                align-items:center;
+                border-color:orange;
+                border-style:ridge;
+                position: relative;
+                height: 50%;
+                width: 99%;
+                border: 2px solid;
+                top:auto;
+                left: auto;
+                padding:0.5cm;
+                border-radius: 5px;
+            }
+            .frameButtons:hover,
+            .frameButtons:focus,
+            .frameButtons:active{
+                transition: background-color 300ms linear;
+                background-color: gray;
+            }
+            .frameCol3
+            {
+                position:relative;
+                align-items: start;
+                left:auto;
+                top:0cm;
+                width: 100%;
+                height:99%;
+                grid-row: 1;
+                grid-template-rows: 95%;
+
+            }
+
+            td{
+                width: 10%;
+            }
+            
+          
+        </style>
+    </head>
+    <body>
+        <table id="frametable">
+            <tbody>
+                <tr>
+                    <td class="frameCol1">
+                        <p>
+                            <button id="tradeRefresh" class = "frameButtons">Refresh Portfolio</button>
+                        </p>
+                    </td>
+                    <td class="frameCol2">
+
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td class="frameCol3">
+                        <table id="tradeList">
+                            <thead>
+                                <tr>
+                                    <td class="listCol1"> 
+                                        <p>Id</p>
+                                    </td>
+                                    <td class="listCol2">
+                                        <p>Instrument Id</p>
+                                        
+                                    </td>
+                                    <td class="listCol3">
+                                        <p>Instrument Type</p>
+                                    </td>
+                                    
+                                    <td class="listCol4">
+                                        <p>Trade Quantity</p>
+                                    </td>
+                                    <td class="listCol5">
+                                        <p>Trade Price</p>
+                                    </td>
+                                    <td class="listCol6">
+                                        <p>Trade Date</p>
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody id="tradeListBody">
+                            </tbody>
+                        </table>
+                        <p id="info"></p>
+                    </td>
+  
+                    <td class="frameCol4">
+                        <p>
+                            Instrument ID:
+                            <input id="InstrumentId" type="number"/>
+                        </p>
+                        <p>
+                            Instrument Type:
+                            <select id="InstrumentType" >
+                                <option value = "underlying">Underlying </option>
+                                <option value = "option">Option</option>
+                                <option value = "future">Future</option>
+                            </select>
+                        </p>
+                        <p>
+                            Trade Quantity
+                            <input id="quantity" type="number" />
+                        </p>
+
+                        <p>
+                            Trade Price
+                            <input id="tradePrice" type="number" />
+                        </p>
+                        <p>
+                            <label for = "TradeDate">Trade Date:</label>
+                            <input type="date" id="TradeDate"  />
+                            <script language="JavaScript"> 
+          
+                                Date.prototype.toDateInputValue = (function() {
+                                    var local = new Date(this); 
+                                    local.setMinutes(this.getMinutes() - this.getTimezoneOffset()); 
+                                    return local.toJSON().slice(0,10); });
+                                document.getElementById("TradeDate").value=new Date().toDateInputValue();                  
+                            </script> 
+                        </p>
+                        <p>
+                            <button id=tradeAdd class="frameButtons">Add</button>
+                        </p>
+                        <p id="debug"></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </body>
+
+
+</html>
